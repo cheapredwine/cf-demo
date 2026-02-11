@@ -1,0 +1,15 @@
+$baseUrl = "https://public-api.electric-harbor.sxplab.com"
+
+1..100 | ForEach-Object {
+    Invoke-RestMethod "$baseUrl/api/v1/products" | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/products?category=electronics" | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/products/1" | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/products/2" | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/products/3" | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/cart/add" -Method POST -ContentType "application/json" -Body '{"product_id": 1, "quantity": 2}' | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/cart/add" -Method POST -ContentType "application/json" -Body '{"product_id": 3, "quantity": 1}' | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/cart/add" -Method POST -ContentType "application/json" -Body '{"product_id": 5, "quantity": 4}' | Out-Null
+    Invoke-RestMethod "$baseUrl/api/v1/health" | Out-Null
+    Start-Sleep -Milliseconds 500
+    Write-Host "Batch $_ of 100 sent"
+}

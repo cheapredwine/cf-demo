@@ -1,0 +1,36 @@
+{
+  "name": "peakcart-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "wrangler": "^4.64.0"
+  },
+  "dependencies": {
+    "blake3-wasm": "^2.1.5",
+    "cookie": "^1.1.1",
+    "detect-libc": "^2.1.2",
+    "error-stack-parser-es": "^1.0.5",
+    "esbuild": "^0.27.3",
+    "kleur": "^4.1.5",
+    "miniflare": "^4.20260210.0",
+    "path-to-regexp": "^6.3.0",
+    "pathe": "^2.0.3",
+    "semver": "^7.7.4",
+    "sharp": "^0.34.5",
+    "supports-color": "^10.2.2",
+    "undici": "^7.18.2",
+    "unenv": "^2.0.0-rc.24",
+    "workerd": "^1.20260210.0",
+    "ws": "^8.18.0",
+    "youch": "^4.1.0-beta.10",
+    "youch-core": "^0.3.3"
+  }
+}
