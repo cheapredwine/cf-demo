@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: PeakCart Product API
+  description: E-commerce product catalog and cart API for PeakCart
+  version: "1.0.0"
+servers:
+  - url: https://public-api.electric-harbor.sxplab.com
+    description: Production
+
+paths:
+  /api/v1/products:
+    get:
+      operationId: listProducts
+      summary: List all products
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [electronics, footwear, grocery, accessories, fitness]
+      responses:
+        "200":
+          description: Product list
+
+  /api/v1/products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Get a single product by ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: Single product
+        "404":
+          description: Product not found
+
+  /api/v1/cart/add:
+    post:
+      operationId: addToCart
+      summary: Add a product to the shopping cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - product_id
+                - quantity
+              properties:
+                product_id:
+                  type: integer
+                  minimum: 1
+                  description: The ID of the product to add
+                quantity:
+                  type: integer
+                  minimum: 1
+                  maximum: 10
+                  description: Number of items to add (max 10)
+              additionalProperties: false
+      responses:
+        "201":
+          description: Item added to cart
+        "400":
+          description: Validation error
+        "404":
+          description: Product not found
+
+  /api/v1/health:
+    get:
+      operationId: healthCheck
+      summary: API health check
+      responses:
+        "200":
+          description: Service is healthy
