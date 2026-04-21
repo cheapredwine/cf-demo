@@ -2,6 +2,8 @@
 
 A demo e-commerce API for Cloudflare API Shield demonstrations. Simulates a headless commerce platform with both documented endpoints and shadow/undocumented endpoints for security testing.
 
+Built with **TypeScript** and deployed on **Cloudflare Workers**.
+
 ## Quick Start
 
 ```bash
@@ -37,44 +39,44 @@ npm run deploy
 
 ```bash
 # List all products
-curl https://your-domain.com/api/v1/products
+curl https://peakcart-api.jsherron.com/api/v1/products
 
 # Filter by category
-curl "https://your-domain.com/api/v1/products?category=electronics"
+curl "https://peakcart-api.jsherron.com/api/v1/products?category=electronics"
 
 # Get single product
-curl https://your-domain.com/api/v1/products/1
+curl https://peakcart-api.jsherron.com/api/v1/products/1
 
 # Add to cart
-curl -X POST https://your-domain.com/api/v1/cart/add \
+curl -X POST https://peakcart-api.jsherron.com/api/v1/cart/add \
   -H "Content-Type: application/json" \
   -d '{"product_id": 1, "quantity": 2}'
 
 # Health check
-curl https://your-domain.com/api/v1/health
+curl https://peakcart-api.jsherron.com/api/v1/health
 
 # Shadow endpoint (undocumented)
-curl https://your-domain.com/api/v1/admin/users
+curl https://peakcart-api.jsherron.com/api/v1/admin/users
 ```
 
 ## API Shield Demo Flow
 
 1. **Upload Schema**: Import `peakcart-schema.yaml` into Cloudflare API Shield
-2. **Generate Traffic**: Run the PowerShell scripts to create traffic logs
+2. **Generate Traffic**: Run the scripts in the `scripts/` directory to create traffic logs
 3. **Enable Protection**: Turn on schema validation and fallthrough blocking
 4. **See Results**: Shadow endpoints blocked, schema violations logged
 
 ### Traffic Scripts
 
 PowerShell (Windows):
-- `create-validtraffic.ps` — Normal API usage
-- `create-invalidtraffic.ps1` — Schema violations (wrong types, missing fields)
-- `create-shadowtraffic.ps1` — Probes undocumented endpoints
+- `scripts/create-validtraffic.ps` — Normal API usage
+- `scripts/create-invalidtraffic.ps1` — Schema violations (wrong types, missing fields)
+- `scripts/create-shadowtraffic.ps1` — Probes undocumented endpoints
 
 Bash (macOS/Linux):
-- `create-validtraffic.sh` — Normal API usage
-- `create-invalidtraffic.sh` — Schema violations
-- `create-shadowtraffic.sh` — Probes undocumented endpoints
+- `scripts/create-validtraffic.sh` — Normal API usage
+- `scripts/create-invalidtraffic.sh` — Schema violations
+- `scripts/create-shadowtraffic.sh` — Probes undocumented endpoints
 
 ## Configuration
 
@@ -82,7 +84,7 @@ Bash (macOS/Linux):
 
 ```toml
 name = "peakcart-api"
-main = "src/index.js"
+main = "src/index.ts"
 compatibility_date = "2024-12-01"
 
 # Optional: custom domain
@@ -102,16 +104,22 @@ DEBUG=true
 ```
 .
 ├── src/
-│   └── index.js          # Worker code
-├── peakcart-schema.yaml  # OpenAPI 3.0 schema
-├── wrangler.toml         # Cloudflare config
-├── package.json          # npm config
-└── doc/                  # Demo documentation
+│   └── index.ts              # Worker code (TypeScript)
+├── scripts/                  # Traffic generation scripts
+│   ├── create-validtraffic.sh
+│   ├── create-invalidtraffic.sh
+│   └── create-shadowtraffic.sh
+├── peakcart-schema.yaml      # OpenAPI 3.0 schema
+├── wrangler.toml             # Cloudflare config
+├── package.json              # npm config
+├── tsconfig.json             # TypeScript config
+└── doc/                      # Demo documentation
 ```
 
 ## Technologies
 
 - [Cloudflare Workers](https://workers.cloudflare.com/) — Edge compute platform
+- [TypeScript](https://www.typescriptlang.org/) — Typed JavaScript
 - [Wrangler](https://developers.cloudflare.com/workers/wrangler/) — CLI for deployment
 - [OpenAPI 3.0](https://spec.openapis.org/oas/v3.0.0) — API schema specification
 
