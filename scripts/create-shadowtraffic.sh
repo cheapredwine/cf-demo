@@ -4,7 +4,7 @@
 
 BASE_URL="https://jsherron.com/api"
 
-for i in {1..50}; do
+for i in {1..10}; do
     # Generate a unique auth token for this round (simulates different attackers)
     AUTH_TOKEN="Bearer shadow$(printf "%03d" $i)-$(echo -n "attacker$i" | base64 | cut -c1-20)"
     
@@ -27,6 +27,6 @@ for i in {1..50}; do
     curl -s "$BASE_URL/api/v1/graphql" \
         -H "Authorization: $AUTH_TOKEN" > /dev/null
 
-    echo "Round $i of 50 done (Auth: ${AUTH_TOKEN:0:30}...)"
+    echo "Round $i of 10 done (Auth: ${AUTH_TOKEN:0:30}...)"
     sleep 0.5
 done

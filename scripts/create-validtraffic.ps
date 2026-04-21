@@ -3,7 +3,7 @@
 
 $baseUrl = "https://jsherron.com/api"
 
-1..100 | ForEach-Object {
+1..20 | ForEach-Object {
     # Generate a unique auth token for this batch (simulates different users)
     $authToken = "Bearer batch{0:D3}-$([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("user$_"))).Substring(0,20)" -f $_
     $headers = @{ "Authorization" = $authToken }
@@ -19,5 +19,5 @@ $baseUrl = "https://jsherron.com/api"
     Invoke-RestMethod "$baseUrl/api/v1/health" -Headers $headers | Out-Null
     
     Start-Sleep -Milliseconds 500
-    Write-Host "Batch $_ of 100 sent (Auth: $($authToken.Substring(0,30))...)"
+    Write-Host "Batch $_ of 20 sent (Auth: $($authToken.Substring(0,30))...)"
 }

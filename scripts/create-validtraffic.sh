@@ -4,7 +4,7 @@
 
 BASE_URL="https://jsherron.com/api"
 
-for i in {1..100}; do
+for i in {1..20}; do
     # Generate a unique auth token for this batch (simulates different users)
     AUTH_TOKEN="Bearer batch$(printf "%03d" $i)-$(echo -n "user$i" | base64 | cut -c1-20)"
     
@@ -27,6 +27,6 @@ for i in {1..100}; do
         -d '{"product_id": 5, "quantity": 4}' > /dev/null
     curl -s "$BASE_URL/api/v1/health" -H "Authorization: $AUTH_TOKEN" > /dev/null
 
-    echo "Batch $i of 100 sent (Auth: ${AUTH_TOKEN:0:30}...)"
+    echo "Batch $i of 20 sent (Auth: ${AUTH_TOKEN:0:30}...)"
     sleep 0.5
 done

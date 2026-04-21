@@ -4,7 +4,7 @@
 
 BASE_URL="https://jsherron.com/api"
 
-for i in {1..5}; do
+for i in {1..3}; do
     # Generate a unique auth token for this round (simulates different users)
     AUTH_TOKEN="Bearer invalid$(printf "%03d" $i)-$(echo -n "baduser$i" | base64 | cut -c1-20)"
     
@@ -60,6 +60,6 @@ for i in {1..5}; do
         -H "Authorization: $AUTH_TOKEN" \
         -d '{"product_id": "1 OR 1=1", "quantity": 1}' > /dev/null
 
-    echo "Round $i of 5 done (Auth: ${AUTH_TOKEN:0:30}...)"
+    echo "Round $i of 3 done (Auth: ${AUTH_TOKEN:0:30}...)"
     sleep 1
 done

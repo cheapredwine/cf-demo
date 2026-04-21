@@ -3,7 +3,7 @@
 
 $baseUrl = "https://jsherron.com/api"
 
-1..5 | ForEach-Object {
+1..3 | ForEach-Object {
     # Generate a unique auth token for this round (simulates different users)
     $authToken = "Bearer invalid{0:D3}-$([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("baduser$_"))).Substring(0,20)" -f $_
     $headers = @{ "Authorization" = $authToken }
@@ -29,6 +29,6 @@ $baseUrl = "https://jsherron.com/api"
     # SQL injection attempt
     curl.exe -s -X POST "$baseUrl/api/v1/cart/add" -H "Content-Type: application/json" -H "Authorization: $authToken" -d '{"product_id": "1 OR 1=1", "quantity": 1}' | Out-Null
     
-    Write-Host "Round $_ of 5 done (Auth: $($authToken.Substring(0,30))...)"
+    Write-Host "Round $_ of 3 done (Auth: $($authToken.Substring(0,30))...)"
     Start-Sleep -Seconds 1
 }

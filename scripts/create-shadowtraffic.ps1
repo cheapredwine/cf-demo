@@ -3,7 +3,7 @@
 
 $baseUrl = "https://jsherron.com/api"
 
-1..50 | ForEach-Object {
+1..10 | ForEach-Object {
     # Generate a unique auth token for this round (simulates different attackers)
     $authToken = "Bearer shadow{0:D3}-$([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("attacker$_"))).Substring(0,20)" -f $_
     
@@ -16,6 +16,6 @@ $baseUrl = "https://jsherron.com/api"
     curl.exe -s "$baseUrl/.env" -H "Authorization: $authToken" | Out-Null
     curl.exe -s "$baseUrl/api/v1/graphql" -H "Authorization: $authToken" | Out-Null
     
-    Write-Host "Round $_ of 50 done (Auth: $($authToken.Substring(0,30))...)"
+    Write-Host "Round $_ of 10 done (Auth: $($authToken.Substring(0,30))...)"
     Start-Sleep -Milliseconds 500
 }
