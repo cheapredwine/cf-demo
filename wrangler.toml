@@ -1,3 +1,7 @@
-﻿name = "peakcart-api"
+name = "peakcart-api"
 main = "src/index.js"
 compatibility_date = "2024-12-01"
+account_id = "[removed]"
+
+# Custom domain configuration
+routes = [{ pattern = "peakcart-api.jsherron.com", custom_domain = true }]

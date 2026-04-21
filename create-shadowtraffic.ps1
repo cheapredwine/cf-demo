@@ -1,4 +1,4 @@
-$baseUrl = "https://public-api.electric-harbor.sxplab.com"
+$baseUrl = "https://peakcart-api.jsherron.com"
 
 1..50 | ForEach-Object {
     curl.exe -s "$baseUrl/api/v1/admin/users" | Out-Null

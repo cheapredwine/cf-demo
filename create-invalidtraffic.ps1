@@ -1,4 +1,4 @@
-$baseUrl = "https://public-api.electric-harbor.sxplab.com"
+$baseUrl = "https://peakcart-api.jsherron.com"
 
 1..5 | ForEach-Object {
     # Wrong types + extra field
