@@ -4,8 +4,8 @@ info:
   description: E-commerce product catalog and cart API for PeakCart
   version: "1.0.0"
 servers:
-  - url: https://public-api.electric-harbor.sxplab.com
-    description: Production
+  - url: https://jsherron.com/api
+    description: Production (API Shield discovery enabled)
 
 paths:
   /api/v1/products:

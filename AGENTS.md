@@ -76,7 +76,9 @@ The API is deployed via Wrangler (not GitHub Actions):
 
 1. Ensure you're authenticated: `wrangler login`
 2. Deploy: `wrangler deploy` or `npm run deploy`
-3. Optional: Configure custom domain in `wrangler.toml`
+3. The API is available at `https://jsherron.com/api/*` (for API Shield discovery)
+
+**Note**: The API is configured to respond on the main domain under `/api/*` path to enable Cloudflare API Shield's automatic discovery mechanism.
 
 ## Demo Flow
 

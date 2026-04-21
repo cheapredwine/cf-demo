@@ -39,25 +39,27 @@ npm run deploy
 
 ```bash
 # List all products
-curl https://peakcart-api.jsherron.com/api/v1/products
+curl https://jsherron.com/api/v1/products
 
 # Filter by category
-curl "https://peakcart-api.jsherron.com/api/v1/products?category=electronics"
+curl "https://jsherron.com/api/v1/products?category=electronics"
 
 # Get single product
-curl https://peakcart-api.jsherron.com/api/v1/products/1
+curl https://jsherron.com/api/v1/products/1
 
 # Add to cart
-curl -X POST https://peakcart-api.jsherron.com/api/v1/cart/add \
+curl -X POST https://jsherron.com/api/v1/cart/add \
   -H "Content-Type: application/json" \
   -d '{"product_id": 1, "quantity": 2}'
 
 # Health check
-curl https://peakcart-api.jsherron.com/api/v1/health
+curl https://jsherron.com/api/v1/health
 
 # Shadow endpoint (undocumented)
-curl https://peakcart-api.jsherron.com/api/v1/admin/users
+curl https://jsherron.com/api/v1/admin/users
 ```
+
+**Note**: The API is configured at `https://jsherron.com/api/*` to enable Cloudflare API Shield's automatic discovery mechanism. The worker also responds at `https://peakcart-api.jsherron.com` for direct access.
 
 ## API Shield Demo Flow
 
@@ -87,8 +89,11 @@ name = "peakcart-api"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
 
-# Optional: custom domain
-routes = [{ pattern = "your-domain.com", custom_domain = true }]
+# API Shield discovery requires API under /api path on main domain
+routes = [
+  { pattern = "jsherron.com/api/*", zone_name = "jsherron.com" },
+  { pattern = "peakcart-api.jsherron.com", custom_domain = true }
+]
 ```
 
 ### Environment Variables (optional)

@@ -3,5 +3,8 @@ main = "src/index.ts"
 compatibility_date = "2024-12-01"
 account_id = "[removed]"
 
-# Custom domain configuration
-routes = [{ pattern = "peakcart-api.jsherron.com", custom_domain = true }]
+# Routes - worker responds to both subdomain and main domain /api path
+routes = [
+  { pattern = "peakcart-api.jsherron.com", custom_domain = true },
+  { pattern = "jsherron.com/api/*", zone_name = "jsherron.com" }
+]
