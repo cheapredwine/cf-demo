@@ -8,15 +8,15 @@ $baseUrl = "https://jsherron.com/api"
     $authToken = "Bearer batch{0:D3}-$([Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("user$_"))).Substring(0,20)" -f $_
     $headers = @{ "Authorization" = $authToken }
     
-    Invoke-RestMethod "$baseUrl/api/v1/products" -Headers $headers | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/products?category=electronics" -Headers $headers | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/products/1" -Headers $headers | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/products/2" -Headers $headers | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/products/3" -Headers $headers | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/cart/add" -Method POST -ContentType "application/json" -Headers $headers -Body '{"product_id": 1, "quantity": 2}' | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/cart/add" -Method POST -ContentType "application/json" -Headers $headers -Body '{"product_id": 3, "quantity": 1}' | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/cart/add" -Method POST -ContentType "application/json" -Headers $headers -Body '{"product_id": 5, "quantity": 4}' | Out-Null
-    Invoke-RestMethod "$baseUrl/api/v1/health" -Headers $headers | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/products" -Headers $headers | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/products?category=electronics" -Headers $headers | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/products/1" -Headers $headers | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/products/2" -Headers $headers | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/products/3" -Headers $headers | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/cart/add" -Method POST -ContentType "application/json" -Headers $headers -Body '{"product_id": 1, "quantity": 2}' | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/cart/add" -Method POST -ContentType "application/json" -Headers $headers -Body '{"product_id": 3, "quantity": 1}' | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/cart/add" -Method POST -ContentType "application/json" -Headers $headers -Body '{"product_id": 5, "quantity": 4}' | Out-Null
+    Invoke-RestMethod "$baseUrl/v1/health" -Headers $headers | Out-Null
     
     Start-Sleep -Milliseconds 500
     Write-Host "Batch $_ of 20 sent (Auth: $($authToken.Substring(0,30))...)"

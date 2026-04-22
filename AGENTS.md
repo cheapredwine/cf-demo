@@ -23,7 +23,8 @@ This is a **demo API** for Cloudflare API Shield demos. It simulates a headless 
 │   ├── create-invalidtraffic.ps1   # Schema violations (PowerShell)
 │   ├── create-invalidtraffic.sh    # Schema violations (Bash)
 │   ├── create-shadowtraffic.ps1    # Shadow API probing (PowerShell)
-│   └── create-shadowtraffic.sh     # Shadow API probing (Bash)
+│   ├── create-shadowtraffic.sh     # Shadow API probing (Bash)
+│   └── test-headers.sh             # Debug tool to verify request headers
 ├── peakcart-schema.yaml      # OpenAPI 3.0 schema (for API Shield)
 ├── wrangler.toml             # Cloudflare Workers config
 ├── package.json              # Dependencies

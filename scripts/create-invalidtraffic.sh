@@ -9,53 +9,53 @@ for i in {1..3}; do
     AUTH_TOKEN="Bearer invalid$(printf "%03d" $i)-$(echo -n "baduser$i" | base64 | cut -c1-20)"
     
     # Wrong types + extra field
-    curl -s -X POST "$BASE_URL/api/v1/cart/add" \
+    curl -s -X POST "$BASE_URL/v1/cart/add" \
         -H "Content-Type: application/json" \
         -H "Authorization: $AUTH_TOKEN" \
         -d '{"product_id": "abc", "quantity": 999, "coupon_code": "SQLI-ATTEMPT"}' > /dev/null
 
     # Missing required field
-    curl -s -X POST "$BASE_URL/api/v1/cart/add" \
+    curl -s -X POST "$BASE_URL/v1/cart/add" \
         -H "Content-Type: application/json" \
         -H "Authorization: $AUTH_TOKEN" \
         -d '{"product_id": 1}' > /dev/null
 
     # Empty body
-    curl -s -X POST "$BASE_URL/api/v1/cart/add" \
+    curl -s -X POST "$BASE_URL/v1/cart/add" \
         -H "Content-Type: application/json" \
         -H "Authorization: $AUTH_TOKEN" \
         -d '{}' > /dev/null
 
     # Wrong content type
-    curl -s -X POST "$BASE_URL/api/v1/cart/add" \
+    curl -s -X POST "$BASE_URL/v1/cart/add" \
         -H "Content-Type: text/plain" \
         -H "Authorization: $AUTH_TOKEN" \
         -d 'not even json' > /dev/null
 
     # Bad enum value
-    curl -s "$BASE_URL/api/v1/products?category=weapons" \
+    curl -s "$BASE_URL/v1/products?category=weapons" \
         -H "Authorization: $AUTH_TOKEN" > /dev/null
 
     # Undocumented endpoint (shadow API)
-    curl -s "$BASE_URL/api/v1/admin/users" \
+    curl -s "$BASE_URL/v1/admin/users" \
         -H "Authorization: $AUTH_TOKEN" > /dev/null
 
     # Wrong HTTP method
-    curl -s -X DELETE "$BASE_URL/api/v1/products/1" \
+    curl -s -X DELETE "$BASE_URL/v1/products/1" \
         -H "Authorization: $AUTH_TOKEN" > /dev/null
 
     # Path param wrong type
-    curl -s "$BASE_URL/api/v1/products/abc" \
+    curl -s "$BASE_URL/v1/products/abc" \
         -H "Authorization: $AUTH_TOKEN" > /dev/null
 
     # Negative quantity
-    curl -s -X POST "$BASE_URL/api/v1/cart/add" \
+    curl -s -X POST "$BASE_URL/v1/cart/add" \
         -H "Content-Type: application/json" \
         -H "Authorization: $AUTH_TOKEN" \
         -d '{"product_id": 1, "quantity": -5}' > /dev/null
 
     # SQL injection attempt
-    curl -s -X POST "$BASE_URL/api/v1/cart/add" \
+    curl -s -X POST "$BASE_URL/v1/cart/add" \
         -H "Content-Type: application/json" \
         -H "Authorization: $AUTH_TOKEN" \
         -d '{"product_id": "1 OR 1=1", "quantity": 1}' > /dev/null
