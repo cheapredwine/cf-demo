@@ -1,5 +1,10 @@
 # PeakCart API
 
+> ⚠️ **NOT OFFICIAL CLOUDFLARE.** Not affiliated with or endorsed by Cloudflare, Inc.
+> NO WARRANTIES, EXPRESS OR IMPLIED. Effectively untested demo code — read everything
+> and dry-run before you run. You assume all risk. See [DISCLAIMER.md](./DISCLAIMER.md).
+
+
 A demo e-commerce API for Cloudflare API Shield demonstrations. Simulates a headless commerce platform with both documented endpoints and shadow/undocumented endpoints for security testing.
 
 Built with **TypeScript** and deployed on **Cloudflare Workers**.
