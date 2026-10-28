@@ -1,7 +1,6 @@
 name = "peakcart-api"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
-account_id = "[removed]"
 
 # Routes - worker responds to both subdomain and main domain /api path
 routes = [
