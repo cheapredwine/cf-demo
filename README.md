@@ -87,7 +87,7 @@ Bash (macOS/Linux):
 
 ## Configuration
 
-### wrangler.toml
+### wrangler.jsonc (JSONC with comments)
 
 ```toml
 name = "peakcart-api"
@@ -120,7 +120,7 @@ DEBUG=true
 │   ├── create-invalidtraffic.sh
 │   └── create-shadowtraffic.sh
 ├── peakcart-schema.yaml      # OpenAPI 3.0 schema
-├── wrangler.toml             # Cloudflare config
+├── wrangler.jsonc             # Cloudflare config
 ├── package.json              # npm config
 ├── tsconfig.json             # TypeScript config
 └── doc/                      # Demo documentation

@@ -26,7 +26,7 @@ This is a **demo API** for Cloudflare API Shield demos. It simulates a headless 
 │   ├── create-shadowtraffic.sh     # Shadow API probing (Bash)
 │   └── test-headers.sh             # Debug tool to verify request headers
 ├── peakcart-schema.yaml      # OpenAPI 3.0 schema (for API Shield)
-├── wrangler.toml             # Cloudflare Workers config
+├── wrangler.jsonc             # Cloudflare Workers config
 ├── package.json              # Dependencies
 ├── tsconfig.json             # TypeScript config
 └── doc/                      # Demo scripts and documentation

@@ -1,0 +1,12 @@
+// PeakCart API — Cloudflare Worker configuration.
+// Routes: worker responds to both subdomain and main domain /api path.
+
+{
+  "name": "peakcart-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-12-01",
+  "routes": [
+    { "pattern": "peakcart-api.jsherron.com", "custom_domain": true },
+    { "pattern": "jsherron.com/api/*", "zone_name": "jsherron.com" }
+  ]
+}
